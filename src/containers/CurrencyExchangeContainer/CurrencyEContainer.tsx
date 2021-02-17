@@ -13,6 +13,7 @@ import {
 //import {connect, ConnectedProps, useSelector} from 'react-redux';
 import { useSelector} from 'react-redux';
 import {
+    selectAll,
     selectAmountOfBYN,
     selectAmountOfCurrency,
     selectCurrencies,
@@ -54,11 +55,13 @@ const CurrencyEContainer: React.FC = () => {
     } = props;*/
 
     const dispatch = useDispatch()
-    const currencies = useSelector(selectCurrencies)
+    /*const currencies = useSelector(selectCurrencies)
     const currentCurrency = useSelector(selectCurrentCurrency)
     const isBuying = useSelector(selectIsBuying)
     const amountOfBYN = useSelector(selectAmountOfBYN)
-    const amountOfCurrency = useSelector(selectAmountOfCurrency)
+    const amountOfCurrency = useSelector(selectAmountOfCurrency)*/
+
+    const {currencies,currentCurrency,isBuying,amountOfBYN,amountOfCurrency } = useSelector(selectAll);
 
     let currencyRate: number = 0;
     const currenciesName = currencies.map((currency: CurrencyType) => {

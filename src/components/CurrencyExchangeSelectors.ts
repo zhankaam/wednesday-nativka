@@ -7,3 +7,6 @@ export const selectCurrentCurrency = (state: IRootState) => state.currency.curre
 export const selectIsBuying = (state: IRootState) => state.currency.isBuying;
 export const selectAmountOfBYN = (state: IRootState) => state.currency.amountOfBYN
 export const selectAmountOfCurrency = (state: IRootState) => state.currency.amountOfCurrency;
+
+
+export const selectAll = (state: IRootState) => state.currency
