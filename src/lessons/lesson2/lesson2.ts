@@ -101,10 +101,30 @@ console.log(counter.reset())
 // 5) superSum(3)(2,5)(3) //10
 // 6) superSum(3)(2,5)(3,9) //10
 
+
+
+
+
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
 
 // Task 05
 // решить все задачи по рекурсии которые даны в конце статьи https://learn.javascript.ru/recursion
+
+/*sumTo(1) = 1
+sumTo(2) = 2 + 1 = 3
+sumTo(3) = 3 + 2 + 1 = 6
+sumTo(4) = 4 + 3 + 2 + 1 = 10
+...
+sumTo(100) = 100 + 99 + ... + 2 + 1 = 5050*/
+
+/*function sumTo(n: number): number{
+    if(n === 1) return n;
+    return n + sumTo(n - 1)
+}
+
+console.log(sumTo(3))*/
+
+
 
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
