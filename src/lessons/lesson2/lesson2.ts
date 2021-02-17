@@ -100,9 +100,34 @@ console.log(counter.reset())
 // 4) superSum(3)(2,5,3) //10
 // 5) superSum(3)(2,5)(3) //10
 // 6) superSum(3)(2,5)(3,9) //10
+/*
 
+function superSum(n: number){
+    if(n === 0) return 0;
+    if(n === 1) return (num: number) => num
 
+    let _arguments: number[] = []
 
+    function helper(...args: number[]){
+        _arguments = [..._arguments, ...args]
+        if(_arguments.length >= n){
+            return _arguments.reduce((acc,number) => acc + number)
+        } else {
+            return helper;
+        }
+    }
+    return helper
+}
+(() => {
+const start = Date.now()
+    //@ts-ignore
+let a = superSum(10)(5,6,8)(2,9)(5)(6)(7)(9)(10)
+const end = Date.now()
+console.log(a)
+console.log('result',end - start)
+})()
+
+*/
 
 
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
@@ -116,16 +141,175 @@ sumTo(3) = 3 + 2 + 1 = 6
 sumTo(4) = 4 + 3 + 2 + 1 = 10
 ...
 sumTo(100) = 100 + 99 + ... + 2 + 1 = 5050*/
+// хвостовая рекурсия
+/*function sumTo(n: number,acc:number): number{
+ if(n === 1) return n + acc;
+ return sumTo(n - 1, acc + n)
+}
+
+console.log(sumTo(3,0))*/
+
+// рекурсия
 
 /*function sumTo(n: number): number{
     if(n === 1) return n;
     return n + sumTo(n - 1)
 }
-
 console.log(sumTo(3))*/
 
+// решения через цикл
+/*
+function sumTo(x: number,n: number){
+    let result = 1;
+    for(i = 0; i < n; i++){
+        result += x
+    }
+    return result
+}
 
+console.log(100)
+*/
+//С использованием формулы арифметической прогрессии.
+//Решение по формуле: sumTo(n) = n*(n+1)/2
+/*
+function sumTo(n: number) {
+    return n * (n + 1) / 2;
+}
+*/
 
+// LearnJS task 2
+//n! = n * (n - 1) * (n - 2) * ...*1
+/*
+1! = 1
+2! = 2 * 1 = 2
+3! = 3 * 2 * 1 = 6
+4! = 4 * 3 * 2 * 1 = 24
+5! = 5 * 4 * 3 * 2 * 1 = 120
+*/
+
+/*function factorial(n: number): number{
+    return (n === 1) ?  1 : n * factorial(n - 1)
+}
+
+console.log(factorial(5))*/
+
+//Напишите функцию fib(n) которая возвращает n-е число Фибоначчи
+/*
+alert(fib(3)); // 2
+alert(fib(7)); // 13
+alert(fib(77))
+*/
+/*function fib(n: number): number{
+    return (n === 1) ? 1 : fib(n - 1) + fib(n - 2)
+}*/
+// Напишите функцию printList(list), которая выводит элементы списка по одному.
+
+/*function printList(list){
+let list = {
+    value: 1,
+    next: {
+        value: 2,
+        next: {
+            value: 3,
+            next: {
+                value: 4,
+                next: null
+            }
+        }
+    }
+};
+    let temp = list
+
+    while(temp){
+        alert(temp.value)
+        temp = temp.next
+    }
+}*/
+// Решение через рекурсию
+/*
+let list = {
+    value: 1,
+    next: {
+        value: 2,
+        next: {
+            value: 3,
+            next: {
+                value: 4,
+                next: null
+            }
+        }
+    }
+};
+
+function printList(list) {
+
+    alert(list.value); // выводим текущий элемент
+
+    if (list.next) {
+        printList(list.next); // делаем то же самое для остальной части списка
+    }
+
+}
+
+printList(list);
+*/
+
+//Выведите односвязный список из предыдущего задания Вывод односвязного списка в обратном порядке.
+//С использованием рекурсии
+/*let list = {
+    value: 1,
+    next: {
+        value: 2,
+        next: {
+            value: 3,
+            next: {
+                value: 4,
+                next: null
+            }
+        }
+    }
+};
+
+function printReverseList(list) {
+
+    if (list.next) {
+        printReverseList(list.next);
+    }
+
+    alert(list.value);
+}
+
+printReverseList(list);*/
+//С использованием цикла
+/*let list = {
+    value: 1,
+    next: {
+        value: 2,
+        next: {
+            value: 3,
+            next: {
+                value: 4,
+                next: null
+            }
+        }
+    }
+};
+
+function printReverseList(list) {
+    let arr = [];
+    let tmp = list;
+
+    while (tmp) {
+        arr.push(tmp.value);
+        tmp = tmp.next;
+    }
+
+    for (let i = arr.length - 1; i >= 0; i--) {
+        alert( arr[i] );
+    }
+}
+
+printReverseList(list);*/
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
 
