@@ -313,5 +313,7 @@ printReverseList(list);*/
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
 
+
+
 // just a plug
 export default () => {};
