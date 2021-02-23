@@ -70,13 +70,21 @@ let l = new Promise((res,rej) => {
 l.then(res => console.log(res)).catch(() => console.log(6))
 console.log(7)*/   //  1,5,7,6,3,4,2
 
-// Task 7
+// Task 6
 /*
 async function sleep(ms: number) {
     return new Promise((res,rej) => {
         setTimeout(() => {
             console.log(ms);
             res();
+        }, ms * 100) // 300 / ms
+    })
+}
+
+async function sleep(ms: number) {
+    return new Promise((res) => {
+        setTimeout(() => {
+           res(console.log(ms));
         }, ms * 100) // 300 / ms
     })
 }
@@ -89,29 +97,102 @@ async function show() {
 show()
 */
 
+// Task 7
+// let pr1 = new Promise((res) => {
+//     res(10)
+// })
+// let pr2 = new Promise((res) => {
+//     res(0)
+// })
+// pr1
+//     .then((res: any) => {
+//         console.log(res)
+//         return res + 2;
+//     })
+//     .then((res: any) => {
+//         console.log(res)
+//         return res + 2
+//     })
+//     .then(console.log)
+// pr2
+//     .then((res: any) => {
+//         console.log(res)
+//         return res + 1
+//     })
+//     .then((res: any) => {
+//         console.log(res)
+//         return res + 1
+//     })
+//     .then(console.log)  // 10,0,12,1,14,2
 
 // Task 01
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
+/*const task1 = new Promise((res,rej) => {
+    console.log("Promise is created")
+})
 
+console.log(task1)*/
 
 // Task 02
 // Создайте промис, который после создания сразу же переходит в состояние resolve
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
 
+// const task2 = new Promise((res,rej) => {
+//     res('Promise Data')
+// })
+// task2.then(r => console.log(r))
+// task2.then(console.log)
+// const task2 = Promise.resolve('Promise Data').then(r => console.log(r))
+//
+// async function testTask2(){
+//     return 'Promise Data'
+// }
+//
+// testTask2().then(console.log)
 
 // Task 03
 // Создайте промис, который после создания сразу же переходит в состояние rejected
 // и возвращает строку 'Promise Error'
 // Получите данные промиса и выведите их в консоль
 
+/*const task3 = new Promise((res,rej) => {
+    rej('Promise Error')
+})*/
+// task3.then(null, err => console.log(err))
+// task3.then(null, console.log)
+
+// const task3 = Promise.reject('Promise Error')
+// task3.catch(console.log)
+
+// async function testTask3() {
+//     throw 'Promise Error'
+// }
+/*(async function() {
+  await new Promise ((res,rej) => {
+        rej('Promise Error')
+  })
+    return 10
+})().catch(console.log)*/
+
+/*async function testTask3(){
+    await Promise.reject('Promise Error')
+}
+testTask3().catch(console.log)*/
 
 // Task 04
 // Создайте промис, который переходит в состояние resolved через 3с.
 // (Используйте setTimeout)
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
+
+/*
+const task4 = new Promise((res,rej) => {
+    setTimeout(res,3000, 'Promise Data')
+})
+task4.then(console.log)
+*/
 
 
 // Task 05
@@ -126,6 +207,49 @@ show()
 // описаного выше объекта: свойство promise получает новый созданный промис,
 // свойства resolve и reject получают ссылки на соответствующие функции
 // resolve и reject. Следующие два обработчика запускают методы resolve и reject.
+
+type testObjType = {
+    promise: null | Promise<any>
+    resolve: null | Function
+    reject: null | Function
+    onSuccess: (paramName: string) => void
+    onError: (paramName: string) => void
+}
+
+const handlePromise: testObjType = {
+    promise: null,
+    resolve: null,
+    reject: null,
+    onSuccess: (paramName: string) => {
+        console.log(`Promise is rejected with error: ${paramName}`)
+    },
+    onError: (paramName: string) => {
+        console.log(`Promise is rejected with error: ${paramName}`)
+    }
+}
+
+export const createPromise = () => {
+    const somePromise: Promise<any> = new Promise((res,rej) => {
+        handlePromise.resolve = res;
+        handlePromise.reject = rej;
+    })
+    handlePromise.promise = somePromise
+    handlePromise.promise
+        .then(res => handlePromise.onSuccess(res))
+        .catch(err => handlePromise.onError(err))
+    console.log(handlePromise)
+}
+
+export const resolvePromise = () => {
+    handlePromise.resolve && handlePromise.resolve('1')
+}
+
+export const rejectPromise = () => {
+    handlePromise.reject && handlePromise.reject('0')
+}
+
+// @ts-ignore
+window.handlePromise = handlePromise
 
 
 // Task 06
