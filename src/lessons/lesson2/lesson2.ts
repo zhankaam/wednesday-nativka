@@ -102,6 +102,23 @@ console.log(counter.reset())
 // 6) superSum(3)(2,5)(3,9) //10
 /*
 
+    const sum = (n) => {
+        let result = 0;
+         if(n)
+          return (..arg) => {
+    if(arg.length >= n){
+    for(let i = 0; i < n; i++)
+           result += arg[i]
+           return result
+            } else {
+       result += arg.reduce((acc,el) => acc + el)
+        }
+    }
+       return 0
+    }
+
+
+
 function superSum(n: number){
     if(n === 0) return 0;
     if(n === 1) return (num: number) => num
@@ -312,7 +329,9 @@ function printReverseList(list) {
 printReverseList(list);*/
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
-
+/*const flat = (arr) => {
+    return arr.reduce((acc,el) => acc.concat(Array.isArray(el) ? flat(el) : el),[])
+}*/
 
 
 // just a plug
