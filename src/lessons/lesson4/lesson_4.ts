@@ -259,12 +259,44 @@ window.handlePromise = handlePromise
 // Создайте функцию print, которая выводит в консоль значение своего параметра
 // Добавьте два метода then и передайте созданные функции.
 
+/*function print(value: string): void {
+    console.log(value)
+}
+function onSuccess(value: string): string {
+    return `${value} Eugen`
+}
+
+const myPromiseName: Promise<string> = new Promise<string>((res,rej) => {
+    setTimeout(res,1000,"My name is")
+})
+myPromiseName
+    .then(onSuccess)
+    .then(print)*/
 
 // Task 7
 // Создайте три промиса. Первый промис возвращает объект { name: "Anna" } через 2с,
 // второй промис возвращает объект {age: 16} через 3 с, а третий {city: ''} через 4с.
 // Получите результаты работы промисов, объедините свойства объектов
 // и выведите в консоль {name, age, city}
+
+/*let prom1: Promise<Object> = new Promise<Object>(res => {
+    setTimeout(res,2000,{ name: "Anna"})
+})
+
+let prom2: Promise<Object> = new Promise<Object>(res => {
+    setTimeout(res,3000,{ age: 16})
+})
+
+let prom3: Promise<Object> = new Promise<Object>(res => {
+    setTimeout(res,4000,{ city: "Minsk"})
+})
+
+let result: Promise<Array<Object>> = Promise.all([prom1, prom2, prom3])
+result
+    .then(([a,b,c]: Array<Object>) => ({...a,...b,...c})).then(console.log)*/
+
+
+
 
 
 
