@@ -1,7 +1,93 @@
+import {log} from "util";
+
 console.log('lesson 4');
 
 // http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
 // https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+
+// Task 1
+/*setTimeout(() => console.log(1), 0);
+console.log(2);
+(() => console.log(3))();
+Promise.resolve(console.log(4));*/ // 2,3,4,1 FIFO
+
+// Task 2
+/*new Promise((resolve,reject) => {
+    console.log(1)
+})
+new Promise(() => {
+    setTimeout(() => console.log(2), 0)
+})
+Promise.resolve(setTimeout(() => console.log(3), 0))
+console.log(4);
+Promise.reject(console.log(5))*/ // 1,4,5,2,3
+
+// Task3
+/*(function(){
+    setTimeout(() => console.log(1),100)
+})()
+console.log(2)
+new Promise((resolve,reject) => {
+    setTimeout(() => console.log(3), 50)
+})
+function f(){
+    console.log(4)
+}
+Promise.resolve(console.log(5))*/  // 2,5,3,1
+
+//Task 4
+/*function f(num: number) {
+    console.log(num)
+}
+Promise.resolve(1)
+    .then(f);
+(function(){
+    console.log(2)
+})()
+console.log(3)
+new Promise((resolve,reject) => {
+    console.log(4)
+})
+setTimeout(f,0,5)*/  // 2,3,4,1,5
+
+// Task 5
+/*console.log(1)
+function f(){
+    console.log(2)
+}
+setTimeout(() => {
+    console.log(3)
+    let p = new Promise((res,rej) => {
+        console.log(4);
+        res();
+    })
+   p.then(() => f())
+},0)
+let l = new Promise((res,rej) => {
+    console.log(5)
+    rej()
+})
+l.then(res => console.log(res)).catch(() => console.log(6))
+console.log(7)*/   //  1,5,7,6,3,4,2
+
+// Task 7
+/*
+async function sleep(ms: number) {
+    return new Promise((res,rej) => {
+        setTimeout(() => {
+            console.log(ms);
+            res();
+        }, ms * 100) // 300 / ms
+    })
+}
+
+async function show() {
+    await sleep(3)
+    await sleep(2)
+    await sleep(1)
+}
+show()
+*/
 
 
 // Task 01
